@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "public.city")
+@Table(name = "city")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,6 +33,6 @@ public class City {
     @Column(name = "lon", nullable = false)
     private Double longitude;
 
-    @OneToOne(mappedBy = "public.city", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "city", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Weather weather;
 }
