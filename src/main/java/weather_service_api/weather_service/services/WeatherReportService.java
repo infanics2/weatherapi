@@ -15,9 +15,6 @@ import weather_service_api.weather_service.services.helperservices.CloudColorSer
 import weather_service_api.weather_service.services.helperservices.ColorService;
 import weather_service_api.weather_service.services.helperservices.TemperatureColorService;
 import weather_service_api.weather_service.services.helperservices.WindColorService;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 @Service
