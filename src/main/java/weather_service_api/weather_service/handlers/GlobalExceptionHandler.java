@@ -24,7 +24,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorMessage handleVacancyCreation(IllegalArgumentException exception) {
         log.error("Illegal Argument Error: {}", exception.getMessage());
         return new ErrorMessage("Illegal Argument Error: {}", exception.getMessage());
@@ -45,8 +45,15 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorMessage handleException(Exception exception) {
+        log.error("Global Exception Error: {}", exception.getMessage());
+        return new ErrorMessage("Global Exception Error: {}", exception.getMessage());
+    }
+
+    @ExceptionHandler(InterruptedException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorMessage handleInterruptedException(InterruptedException exception) {
         log.error("Global Exception Error: {}", exception.getMessage());
         return new ErrorMessage("Global Exception Error: {}", exception.getMessage());
     }

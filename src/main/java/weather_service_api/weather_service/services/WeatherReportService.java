@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 import weather_service_api.weather_service.dtos.WeatherReportDto;
 import weather_service_api.weather_service.dtos.weatherapiDTOs.WeatherApiResponseDto;
+import weather_service_api.weather_service.entity.City;
+import weather_service_api.weather_service.entity.Weather;
 import weather_service_api.weather_service.repositories.CityRepository;
 import weather_service_api.weather_service.repositories.WeatherRepository;
 import weather_service_api.weather_service.services.helperservices.CloudColorService;
-import weather_service_api.weather_service.services.helperservices.ColorService;
 import weather_service_api.weather_service.services.helperservices.TemperatureColorService;
 import weather_service_api.weather_service.services.helperservices.WindColorService;
 import java.util.Map;
@@ -56,6 +56,30 @@ public class WeatherReportService {
         );
         ResponseEntity<WeatherApiResponseDto> response = restTemplate.getForEntity(apiUrl, WeatherApiResponseDto.class, uriVariables);
         return toWeatherReportDto(response);
+    }
+
+    public void createWeatherReport(String cityName) throws Exception {
+        Map<String, String> uriVariables = Map.of(
+                "q", cityName,
+                "key", apiKey
+        );
+        ResponseEntity<WeatherApiResponseDto> response = restTemplate.getForEntity(apiUrl, WeatherApiResponseDto.class, uriVariables);
+
+        City city = cityRepository.findByName(cityName);
+
+        String cloudColor = cloudColorService.getColor(response.getBody().getWeather().getCloud());
+        String windColor = windColorService.getColor(response.getBody().getWeather().getWindKph());
+        String temperatureColor = temperatureColorService.getColor(response.getBody().getWeather().getTemperatureCelsius());
+
+        Weather weather = new Weather();
+        weather.setTempC(response.getBody().getWeather().getTemperatureCelsius());
+        weather.setWindKph(response.getBody().getWeather().getWindKph());
+        weather.setCloud(response.getBody().getWeather().getCloud());
+        weather.setCloudColor(cloudColor);
+        weather.setWindColor(windColor);
+        weather.setTempColor(temperatureColor);
+        weather.setCity(city);
+        weatherRepository.save(weather);
     }
 
     private WeatherReportDto toWeatherReportDto(ResponseEntity<WeatherApiResponseDto> dto) {
