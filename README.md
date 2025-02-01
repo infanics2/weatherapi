@@ -48,6 +48,8 @@ Endpoint: POST /register
 Request Body:
 
 `{
+"name": "user",
+"surname": "surname",
 "username": "testuser",
 "password": "securepassword"
 }`
@@ -57,6 +59,9 @@ Response:
 `{
 "token": "your-jwt-token"
 }`
+
+(Make sure you place your generated token in Authorization menu of Postman selecting Bearer Token
+in Auth type dropdown when getting authenticated. Without jwt token your access will be denied)
 
 # Authenticate User
 
