@@ -24,87 +24,112 @@ Ensure you have the following installed:
 
 Clone the Repository
 
-`git clone git@github.com:infanics2/weatherapi.git`
 
+    `$ git clone git@github.com:infanics2/weatherapi.git`
 
 ## Build and Run the Application with Docker
 
 Use Docker Compose to build and run the application:
 
-`docker-compose up --build`
+    `$ docker-compose up --build`
 
 This will build the application and start the necessary containers.
 
-API Endpoints
+# API Endpoints
 
 ## Authentication Endpoints
 
 Base URL: http://localhost:8080/api/v1/auth
 
-# Register a New User
+## Register a New User
 
-Endpoint: POST /register
+Endpoint: `POST /register`
 
 Request Body:
 
-`{
-"name": "user",
-"surname": "surname",
-"username": "testuser",
-"password": "securepassword"
-}`
+    `{
+
+        "name": "user",
+    
+        "surname": "surname",
+    
+        "username": "testuser",
+    
+        "password": "securepassword"
+
+    }`
 
 Response:
 
-`{
-"token": "your-jwt-token"
-}`
+    `{
+    
+        "token": "your-jwt-token"
+    
+    }`
 
 (Make sure you place your generated token in Authorization menu of Postman selecting Bearer Token
 in Auth type dropdown when getting authenticated. Without jwt token your access will be denied)
 
-# Authenticate User
+## Authenticate User
 
-Endpoint: POST /authenticate
+Endpoint: `POST /authenticate`
 
 Request Body:
 
-`{
-"username": "testuser",
-"password": "securepassword"
-}`
+    `{
+
+        "username": "testuser",
+
+        "password": "securepassword"
+
+    }`
 
 Response:
 
-`{
-"token": "your-jwt-token"
-}`
+    `{
 
-Weather Report Endpoints
+        "token": "your-jwt-token"
+
+    }`
+
+## Weather Report Endpoints
 
 Base URL: http://localhost:8080/api/v1
 
 Get Weather Report
 
-Endpoint: GET /weather-report
+Endpoint: `GET /weather-report`
 (Make sure you place your generated token in Authorization menu of Postman selecting Bearer Token 
 in Auth type dropdown. Without jwt token your access will be denied)
 
 Request Body:
 
-`Tashkent`
+    `{
+
+        "q": "Tashkent"
+
+    }`
 
 Response:
 
-`{
-    "name": "Tashkent",
-    "country": "Uzbekistan",
-    "latitude": 41.3167,
-    "longitude": 69.25,
-    "tempC": 4.3,
-    "tempColor": "#D1F2D3",
-    "windKph": 6.1,
-    "windColor": "#E0F7FA",
-    "cloud": 0,
-    "cloudColor": "#FFF9C4"
-}`
+    `{
+        "name": "Tashkent",
+
+        "country": "Uzbekistan",
+
+        "latitude": 41.3167,
+
+        "longitude": 69.25,
+
+        "tempC": 4.3,
+
+        "tempColor": "#D1F2D3",
+
+        "windKph": 6.1,
+
+        "windColor": "#E0F7FA",
+
+        "cloud": 0,
+
+        "cloudColor": "#FFF9C4"
+    }`
