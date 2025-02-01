@@ -82,6 +82,8 @@ Base URL: http://localhost:8080/api/v1
 Get Weather Report
 
 Endpoint: GET /weather-report
+(Make sure you place your generated token in Authorization menu of Postman selecting Bearer Token 
+in Auth type dropdown. Without jwt token your access will be denied)
 
 Request Body:
 
