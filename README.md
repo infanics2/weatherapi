@@ -24,15 +24,14 @@ Ensure you have the following installed:
 
 Clone the Repository
 
-git clone git@github.com:infanics2/weatherapi.git
+`git clone git@github.com:infanics2/weatherapi.git`
 
-cd weather-service-api
 
 ## Build and Run the Application with Docker
 
 Use Docker Compose to build and run the application:
 
-docker-compose up --build
+`docker-compose up --build`
 
 This will build the application and start the necessary containers.
 
@@ -48,16 +47,16 @@ Endpoint: POST /register
 
 Request Body:
 
-{
+`{
 "username": "testuser",
 "password": "securepassword"
-}
+}`
 
 Response:
 
-{
+`{
 "token": "your-jwt-token"
-}
+}`
 
 # Authenticate User
 
@@ -65,16 +64,16 @@ Endpoint: POST /authenticate
 
 Request Body:
 
-{
+`{
 "username": "testuser",
 "password": "securepassword"
-}
+}`
 
 Response:
 
-{
+`{
 "token": "your-jwt-token"
-}
+}`
 
 Weather Report Endpoints
 
@@ -86,11 +85,11 @@ Endpoint: GET /weather-report
 
 Request Body:
 
-"Tashkent"
+`Tashkent`
 
 Response:
 
-{
+`{
     "name": "Tashkent",
     "country": "Uzbekistan",
     "latitude": 41.3167,
@@ -101,4 +100,4 @@ Response:
     "windColor": "#E0F7FA",
     "cloud": 0,
     "cloudColor": "#FFF9C4"
-}
+}`
