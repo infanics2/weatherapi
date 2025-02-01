@@ -23,3 +23,7 @@ spring:
   logging:
     level:
       root: info
+
+  properties:
+    weather-api-url: http://api.weatherapi.com/v1/current.json?q={q}&key={key}
+    api-key: 8ae12118b5ca4f309ce110754252801
